@@ -10,7 +10,30 @@
 
 <body>
 
+<template>
+	<p>I'm coming from template</p>
+	
+	<!-- template is inert! -->
+	
+	<!--
+	<img src="broken/path.jpg" />
+	-->
+	
+	
+</template>
 
+<script type="text/javascript">
+	
+	// get a reference to template
+	var template = document.querySelector('template');  
+	
+	// clone template content
+	var clone = document.importNode(template.content, true);
+	
+	// insert to DOM (activate template)
+	document.body.appendChild(clone);
+	
+</script>
 
 </body>
 </html>
