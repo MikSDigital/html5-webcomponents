@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Nested templates</title>
+
+<template id="header">
+	
+	<div>Header</div>
+	
+	<template id="body">
+		<div>Body</div>
+	</template>
+	
+</template>
+
+</head>
+
+<body>
+	<script type="text/javascript">
+		var template = document.querySelector('template');
+		var clone = document.importNode(template.content,true);
+		document.body.appendChild(clone);
+	</script>
+</body>
+</html>
