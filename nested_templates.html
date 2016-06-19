@@ -20,7 +20,11 @@
 
 <body>
 	<script type="text/javascript">
-		var template = document.querySelector('template');
+		var template = document.querySelector('#header');
+		var clone = document.importNode(template.content,true);
+		document.body.appendChild(clone);
+		
+		var template = document.querySelector('#body');
 		var clone = document.importNode(template.content,true);
 		document.body.appendChild(clone);
 	</script>
