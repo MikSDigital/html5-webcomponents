@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Extending Custom/Native Elements</title>
+
+</head>
+
+<body>
+	
+<!-- Extending custom/native HTML elements -->
+
+<!--<button is='pluralsight-button'></button>-->
+
+<script type="text/javascript">
+	var Proto = Object.create(HTMLButtonElement.prototype);
+	
+	Proto.createdCallback = function() {
+		this.innerHTML = "Pluralsight Button";
+		this.value = " Default button";
+		this.style.color = "orange";
+	};
+	
+	var PluralsightButton = document.registerElement('pluralsight-button', {
+		prototype : Proto,
+		extends : 'button'
+	});
+	
+	// Option #2 how to instantiate element
+	//document.body.appendChild(new PluralsightButton());
+	
+	// Option #3
+	var button = document.createElement('button','pluralsight-button');
+	//document.body.appendChild(button);
+	
+	// Option #4
+	document.body.innerHTML = '<button is="pluralsight-button" />';
+</script>
+
+</body>
+</html>
