@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Shadow DOM creation</title>
+
+<style type="text/css">
+  h1 {color:red;}
+</style>
+
+</head>
+
+<body>
+<h1>Hello from Light DOM!</h1>
+
+<!-- 1. create shadow host -->
+<div id="host"></div>
+
+<template>  <!-- template for Shasow DOM content -->
+  
+  <style type="text/css">
+    h1 {color:green;}  /* separate styling */
+  </style>
+  
+  <h1>Hello from Shadow DOM!</h1>
+  
+  <script type="text/javascript">
+    console.log(document.querySelector('h1'));
+  </script>
+  
+</template>
+
+<script>
+  
+  var host = document.getElementById('host');
+  var root = host.createShadowRoot();
+  var template = document.querySelector('template');
+  root.appendChild(document.importNode(template.content,true));
+  
+  console.log(document.querySelector('h1'));
+  
+</script>
+
+</body>
+</html>
