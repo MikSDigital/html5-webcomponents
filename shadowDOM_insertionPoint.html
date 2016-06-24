@@ -11,8 +11,9 @@
 
 <comment-form>
   <h1>Tell me more!</h1>
-  <p>Write it here:</p>
+  <p class="instructions">Write it here:</p>
   <p class="footer">Privacy Policy</p>
+  Random text
 </comment-form>
 
 <template>
@@ -21,12 +22,13 @@
       <content select="h1"></content> <!-- find h1 content in the Shadow DOM and display it here -->
     </legend>
     
-    <content select="p"></content>
+    <content select="p.instructions"></content>
     <textarea style="width:400px; height:200px;"></textarea>
     <br>
     <input type="submit" name="" value="Submit Comment"/>
     
     <content select=".footer"></content>
+    <content></content>
   </fieldset>
 </template>
 
