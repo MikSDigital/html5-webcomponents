@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Shadow DOM content insertion points</title>
+</head>
+
+<body>
+
+<comment-form>
+  <h1>Tell me more!</h1>
+  <p>Write it here:</p>
+  <p class="footer">Privacy Policy</p>
+</comment-form>
+
+<template>
+  <fieldset>
+    <legend>
+      <content select="h1"></content> <!-- find h1 content in the Shadow DOM and display it here -->
+    </legend>
+    
+    <content select="p"></content>
+    <textarea style="width:400px; height:200px;"></textarea>
+    <br>
+    <input type="submit" name="" value="Submit Comment"/>
+    
+    <content select=".footer"></content>
+  </fieldset>
+</template>
+
+<script type="text/javascript">
+
+  var CommentProto = Object.create(HTMLElement.prototype);
+
+  CommentProto.createdCallback = function(){
+    var template = document.querySelector('template');
+    var shadow = this.createShadowRoot();
+    shadow.appendChild(document.importNode(template.content,true));
+    };
+    
+    // register custom element
+    document.registerElement('comment-form', {
+      prototype : CommentProto
+
+    });
+  
+  </script>
+
+</body>
+</html>
