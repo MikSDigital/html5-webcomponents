@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Extending Custom/Native Elements</title>
+
+</head>
+
+<body>
+	
+<!-- Callbacks for custom/native HTML elements -->
+
+<!-- Method createdCallback, called when Instance is created -->
+<!-- Method attachedCallback, called when Instance inserted into DOM -->
+<!-- Method detachedCallback, called when Instance removed from DOM -->
+<!-- Method attributeChangeCallback, Attributes are added, removed or updated -->
+
+<hello-world></hello-world>
+
+
+<script type="text/javascript">
+  var Proto = Object.create(HTMLElement.prototype);
+  
+  Proto.createdCallback = function() {
+  	this.innerHTML ='<h1>Hello World</h1>';
+  };
+  
+  Proto.attachedCallback = function(){
+  	console.log("Attached!");
+  };
+  
+    Proto.detachedCallback = function(){
+  	console.log("Detached!");
+  };
+  
+    Proto.attributeChangedCallback = function(attrName, oldVal, newVal){
+  	console.log(attrName + ", " + oldVal + ", " + newVal);
+  };
+  
+  var Hello = document.registerElement('hello-world', {
+  	prototype: Proto
+  });
+  
+  document.querySelector('hello-world').setAttribute('test', 1);
+  document.querySelector('hello-world').remove();
+  
+</script>
+
+</body>
+</html>
